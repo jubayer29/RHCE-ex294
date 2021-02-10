@@ -1,0 +1,37 @@
+---
+
+- name: Replace a motd  entry
+  hosts: proxy
+  tasks:
+    - name: for proxy
+      lineinfile:
+        path: /etc/motd.d/cockpit
+        regexp: 'Activate the web console with: systemctl enable --now cockpit.socket'
+        line: Welcome to HAPROXY server
+        owner: root
+        group: root
+        mode: '0644'
+- name: Replace a motd  entry for webservers
+  hosts: webservers
+  tasks:
+    - name: for webserver
+      lineinfile:
+        path: /etc/motd.d/cockpit
+        regexp: 'Activate the web console with: systemctl enable --now cockpit.socket'
+        line: Welcome to APACHE server
+        owner: root
+        group: root
+        mode: '0644'
+- name: Replace a motd  entry for database
+  hosts: database
+  tasks:
+    - name: for db
+      lineinfile:
+        path: /etc/motd.d/cockpit
+        regexp: 'Activate the web console with: systemctl enable --now cockpit.socket'
+        line: Welcome to MYSQL server
+        owner: root
+        group: root
+        mode: '0644'
+
+...
